@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding - Venue & Seating</title>
+    <title>Anisha & Gautham - October 11, 2025</title>
     <style>
         * {
             margin: 0;
@@ -12,10 +12,10 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Playfair Display', 'Georgia', serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #5a5a5a;
+            background: #f4f1ec;
             min-height: 100vh;
         }
 
@@ -28,36 +28,76 @@
         header {
             text-align: center;
             margin-bottom: 40px;
-            padding: 40px 0;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10,20 Q20,10 30,20 T50,20" stroke="%23c4a484" fill="none" stroke-width="0.5" opacity="0.3"/><path d="M70,80 Q80,70 90,80" stroke="%23c4a484" fill="none" stroke-width="0.5" opacity="0.3"/></svg>') no-repeat;
+            background-size: 200px 200px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
-            color: #2c3e50;
-            font-size: 3em;
-            margin-bottom: 10px;
-            font-weight: 300;
+            color: #5a5a5a;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .couple-names {
+            font-size: 4em;
+            font-weight: 400;
+            color: #5a5a5a;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         .subtitle {
-            color: #7f8c8d;
-            font-size: 1.2em;
-            font-style: italic;
+            color: #8a8a8a;
+            font-size: 1.1em;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .wedding-date {
+            color: #8a8a8a;
+            font-size: 0.95em;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .tab-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
             overflow: hidden;
+            border: 1px solid rgba(196, 164, 132, 0.2);
         }
 
         .tab-nav {
             display: flex;
-            background: #34495e;
-            border-radius: 15px 15px 0 0;
+            background: #e8e2d8;
+            border-radius: 0;
+            border-bottom: 1px solid rgba(196, 164, 132, 0.3);
         }
 
         .tab-button {
@@ -65,21 +105,26 @@
             padding: 20px;
             background: none;
             border: none;
-            color: #bdc3c7;
-            font-size: 1.1em;
+            color: #8a8a8a;
+            font-size: 1em;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Georgia', serif;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9em;
         }
 
         .tab-button:hover {
-            background: rgba(52, 152, 219, 0.2);
-            color: #3498db;
+            background: rgba(196, 164, 132, 0.1);
+            color: #c4a484;
         }
 
         .tab-button.active {
-            background: #3498db;
+            background: #c4a484;
             color: white;
+            font-weight: 500;
         }
 
         .tab-content {
@@ -96,56 +141,121 @@
             text-align: center;
         }
 
+        .floor-plan-container {
+            width: 100%;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(196, 164, 132, 0.3);
+            border-radius: 0;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        .floor-plan-container:active {
+            cursor: grabbing;
+        }
+
+        .floor-plan-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+        }
+
+        .zoom-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .zoom-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(196, 164, 132, 0.9);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-btn:hover {
+            background: #c4a484;
+            transform: scale(1.1);
+        }
+
         .map-placeholder, .seating-placeholder {
             width: 100%;
             height: 400px;
-            background: #ecf0f1;
-            border: 2px dashed #bdc3c7;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(196, 164, 132, 0.3);
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin: 20px 0;
+            margin: 30px 0;
         }
 
         .placeholder-text {
-            color: #7f8c8d;
+            color: #8a8a8a;
             font-size: 1.2em;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
         }
 
         .placeholder-subtext {
-            color: #95a5a6;
+            color: #a5a5a5;
             font-size: 0.9em;
+            font-weight: 300;
+            line-height: 1.5;
+            text-align: center;
         }
 
         .section-title {
-            color: #2c3e50;
-            font-size: 2em;
-            margin-bottom: 20px;
-            font-weight: 300;
+            color: #5a5a5a;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
         }
 
         .venue-info, .seating-info {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 30px;
+            border-radius: 0;
+            margin: 30px 0;
             text-align: left;
+            border: 1px solid rgba(196, 164, 132, 0.2);
         }
 
         .info-item {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .info-label {
-            font-weight: bold;
-            color: #34495e;
+            font-weight: 500;
+            color: #5a5a5a;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05em;
         }
 
         .info-value {
-            color: #7f8c8d;
+            color: #8a8a8a;
+            font-weight: 300;
         }
 
         @media (max-width: 768px) {
@@ -173,16 +283,19 @@
     </style>
 </head>
 <body>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <div class="container">
         <header>
-            <h1>Our Wedding</h1>
-            <p class="subtitle">Celebrating Love & New Beginnings</p>
+            <div class="couple-names">Anisha & Gautham</div>
+            <p class="subtitle">SATURDAY, OCTOBER 11, 2025 • CHANTILLY, VA</p>
+            <p class="wedding-date">35 DAYS TO GO!</p>
         </header>
 
         <div class="tab-container">
             <div class="tab-nav">
                 <button class="tab-button active" onclick="openTab(event, 'venue-map')">
-                    Venue Map
+                    Floor Plan
                 </button>
                 <button class="tab-button" onclick="openTab(event, 'seating-chart')">
                     Seating Chart
@@ -191,7 +304,7 @@
 
             <div id="venue-map" class="tab-content active">
                 <div class="map-container">
-                    <h2 class="section-title">Venue Map</h2>
+                    <h2 class="section-title">Interactive Floor Plan</h2>
                     
                     <div class="venue-info">
                         <div class="info-item">
@@ -200,7 +313,7 @@
                         </div>
                         <div class="info-item">
                             <span class="info-label">Address:</span> 
-                            <span class="info-value">123 Wedding Lane, City, State 12345</span>
+                            <span class="info-value">Chantilly, Virginia</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Ceremony Time:</span> 
@@ -212,18 +325,19 @@
                         </div>
                     </div>
 
-                    <div class="map-placeholder">
-                        <div class="placeholder-text">Interactive Venue Map</div>
-                        <div class="placeholder-subtext">
-                            Replace this area with an embedded Google Map,<br>
-                            custom venue layout, or uploaded venue map image
+                    <div class="floor-plan-container" id="floorPlanContainer">
+                        <div class="zoom-controls">
+                            <button class="zoom-btn" onclick="zoomIn()" title="Zoom In">+</button>
+                            <button class="zoom-btn" onclick="zoomOut()" title="Zoom Out">−</button>
+                            <button class="zoom-btn" onclick="resetZoom()" title="Reset">⌂</button>
                         </div>
+                        <img src="images/floor_plan.jpg" alt="Wedding Venue Floor Plan" class="floor-plan-image" id="floorPlanImage" draggable="false">
                     </div>
 
-                    <div style="margin-top: 20px; color: #7f8c8d; font-style: italic;">
-                        💡 <strong>Getting There:</strong> Parking is available on-site. 
-                        The ceremony will be held in the outdoor garden, 
-                        with reception following in the main hall.
+                    <div style="margin-top: 25px; color: #8a8a8a; font-style: italic; font-weight: 300;">
+                        💡 <strong>Navigation Tips:</strong> Click and drag to pan around the floor plan. 
+                        Use the zoom controls to get a closer look at specific areas.
+                        The ceremony will be held in the outdoor garden area.
                     </div>
                 </div>
             </div>
@@ -257,7 +371,7 @@
                         </div>
                     </div>
 
-                    <div style="margin-top: 20px; color: #7f8c8d; font-style: italic;">
+                    <div style="margin-top: 25px; color: #8a8a8a; font-style: italic; font-weight: 300;">
                         🍽️ <strong>Note:</strong> If you have any dietary restrictions or cannot find your name, 
                         please ask a member of the wedding party for assistance.
                     </div>
@@ -287,8 +401,96 @@
             evt.currentTarget.classList.add("active");
         }
 
+        // Interactive Floor Plan Functionality
+        let currentZoom = 1;
+        let isDragging = false;
+        let startX, startY;
+        let translateX = 0, translateY = 0;
+
+        function zoomIn() {
+            if (currentZoom < 3) {
+                currentZoom += 0.3;
+                updateTransform();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.5) {
+                currentZoom -= 0.3;
+                updateTransform();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            updateTransform();
+        }
+
+        function updateTransform() {
+            const img = document.getElementById('floorPlanImage');
+            img.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
+        }
+
         // Optional: Add some interactive features
         document.addEventListener('DOMContentLoaded', function() {
+            const floorPlanImage = document.getElementById('floorPlanImage');
+            const container = document.getElementById('floorPlanContainer');
+
+            // Mouse drag functionality
+            container.addEventListener('mousedown', function(e) {
+                if (currentZoom > 1) {
+                    isDragging = true;
+                    startX = e.clientX - translateX;
+                    startY = e.clientY - translateY;
+                    container.style.cursor = 'grabbing';
+                }
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging && currentZoom > 1) {
+                    translateX = e.clientX - startX;
+                    translateY = e.clientY - startY;
+                    updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', function() {
+                isDragging = false;
+                container.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+            });
+
+            // Touch support for mobile
+            let touchStartX, touchStartY;
+            container.addEventListener('touchstart', function(e) {
+                if (currentZoom > 1 && e.touches.length === 1) {
+                    const touch = e.touches[0];
+                    touchStartX = touch.clientX - translateX;
+                    touchStartY = touch.clientY - translateY;
+                }
+            });
+
+            container.addEventListener('touchmove', function(e) {
+                if (currentZoom > 1 && e.touches.length === 1) {
+                    e.preventDefault();
+                    const touch = e.touches[0];
+                    translateX = touch.clientX - touchStartX;
+                    translateY = touch.clientY - touchStartY;
+                    updateTransform();
+                }
+            });
+
+            // Wheel zoom
+            container.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                if (e.deltaY < 0) {
+                    zoomIn();
+                } else {
+                    zoomOut();
+                }
+            });
+
             // Add smooth scrolling when tabs change
             const tabButtons = document.querySelectorAll('.tab-button');
             tabButtons.forEach(button => {
